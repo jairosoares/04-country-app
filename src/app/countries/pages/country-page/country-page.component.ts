@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CountriesService } from '../../services/countries.service';
 import { switchMap } from 'rxjs';
-import { Country } from '../../interfaces/country';
-import { CommonModule } from '@angular/common';
+
+import { Country } from '../../interfaces/country.interface';
+import { CountriesService } from '../../services/countries.service';
 
 @Component({
   selector: 'app-country-page',
@@ -29,22 +30,6 @@ export class CountryPageComponent implements OnInit {
           if (!country) return this.router.navigateByUrl('');
           return this.country = country;
     });
-
-    /*
-    this.activatedRoute.params
-      .subscribe( ({id}) => {
-        this.searchCountry(id);
-      })
-    */
-
-  }
-
-  // uma outra feia forma de fazer
-  searchCountry( code: string) {
-    this.countriesService.searchCountryByAlphaCode( code )
-      .subscribe( country => {
-        console.log(country);
-      })
 
   }
 
